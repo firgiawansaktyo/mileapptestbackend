@@ -1,0 +1,303 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mileapp API",
+        "description": "Mileapp API",
+        "contact": {
+            "email": "firgiawansaktyo@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api/package",
+            "description": "Mileapp package api"
+        }
+    ],
+    "paths": {
+        "/package": {
+            "get": {
+                "tags": [
+                    "getPackage"
+                ],
+                "summary": "Get list of package",
+                "description": "Returns list of package",
+                "operationId": "getPackageList",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "storePackage"
+                ],
+                "summary": "Add a new package to the store",
+                "operationId": "createPackage",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/PackageSchema"
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/package/{id}": {
+            "get": {
+                "tags": [
+                    "getDetailPackage"
+                ],
+                "summary": "Get package information",
+                "description": "Returns package data",
+                "operationId": "getPackageById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64",
+                            "example": "1927b0f7-68e3-40a4-807d-a64eb671e5ed"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "422": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "putPackage"
+                ],
+                "summary": "Update whole package",
+                "operationId": "updatePackage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64",
+                            "example": "1927b0f7-68e3-40a4-807d-a64eb671e5ed"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/PackageSchema"
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "deletePackage"
+                ],
+                "summary": "Add a new package to the store",
+                "operationId": "deletePackage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64",
+                            "example": "1927b0f7-68e3-40a4-807d-a64eb671e5ed"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "patchPackage"
+                ],
+                "summary": "Update single or portion attributepackage",
+                "operationId": "updatePatchPackage",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64",
+                            "example": "1927b0f7-68e3-40a4-807d-a64eb671e5ed"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/PackageSchema"
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PackageSchema": {
+                "title": "Package model",
+                "description": "Package model",
+                "properties": {
+                    "transaction_id": {
+                        "title": "transaction_id",
+                        "description": "transaction_id",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "customer_name": {
+                        "title": "customer_name",
+                        "description": "customer_name",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "customer_code": {
+                        "title": "customer_code",
+                        "description": "customer_code",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "transaction_amount": {
+                        "title": "transaction_amount",
+                        "description": "transaction_amount",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "transaction_discount": {
+                        "title": "transaction_discount",
+                        "description": "transaction_discount",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "transaction_additional_field": {
+                        "title": "transaction_additional_field",
+                        "description": "transaction_additional_field",
+                        "type": "object",
+                        "format": "nullable"
+                    },
+                    "transaction_payment_type": {
+                        "title": "transaction_payment_type",
+                        "description": "transaction_payment_type",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "transaction_state": {
+                        "title": "transaction_state",
+                        "description": "transaction_state",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "transaction_code": {
+                        "title": "transaction_code",
+                        "description": "transaction_code",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "transaction_order": {
+                        "title": "transaction_order",
+                        "description": "transaction_order",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "location_id": {
+                        "title": "location_id",
+                        "description": "location_id",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "transaction_payment_type_name": {
+                        "title": "transaction_payment_type_name",
+                        "description": "transaction_payment_type_name",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "transaction_cash_amount": {
+                        "title": "transaction_cash_amount",
+                        "description": "transaction_cash_amount",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "transaction_cash_change": {
+                        "title": "transaction_cash_change",
+                        "description": "transaction_cash_change",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "connote_id": {
+                        "title": "connote_id",
+                        "description": "connote_id",
+                        "type": "integer",
+                        "format": "string"
+                    },
+                    "custom_field": {
+                        "title": "custom_field",
+                        "description": "custom_field",
+                        "type": "object",
+                        "format": "nullable"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Package"
+                }
+            }
+        },
+        "responses": {
+            "422": {
+                "description": "Bad request",
+                "content": {
+                    "application/json": {}
+                }
+            },
+            "404": {
+                "description": "Resource Not Found"
+            }
+        },
+        "requestBodies": {
+            "PackageSchema": {
+                "description": "PackageSchema object that needs to be added to the store",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/PackageSchema"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
